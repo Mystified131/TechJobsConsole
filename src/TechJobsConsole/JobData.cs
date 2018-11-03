@@ -20,6 +20,49 @@ namespace TechJobsConsole
          * Returns a list of all values contained in a given column,
          * without duplicates. 
          */
+
+        public static List<Dictionary<string, string>> FindByValue(string searchTerm)
+        {
+          
+            LoadData();
+
+            List<Dictionary<string, string>> foundvalues = new List<Dictionary<string, string>>();
+
+            foreach (Dictionary<string, string> row in AllJobs)
+
+            {
+
+                foreach (KeyValuePair<string, string> Data in row)
+
+                {
+
+                    string akey = Data.Key;
+                    string avalue = Data.Value;
+
+                    if (foundvalues.Contains(row) == false)
+
+                    { if (avalue.Contains(searchTerm))
+
+                        {
+
+                            foundvalues.Add(row);
+
+                        }    
+                                       
+                                }
+
+                   
+                }
+
+            }
+
+
+                return foundvalues;
+        }
+
+
+
+
         public static List<string> FindAll(string column)
         {
             LoadData();
