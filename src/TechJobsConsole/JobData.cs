@@ -20,6 +20,10 @@ namespace TechJobsConsole
          * Returns a list of all values contained in a given column,
          * without duplicates. 
          */
+ 
+   
+
+     
 
         public static List<Dictionary<string, string>> FindByValue(string searchTerm)
         {
@@ -41,7 +45,9 @@ namespace TechJobsConsole
 
                     if (foundvalues.Contains(row) == false)
 
-                    { if (avalue.Contains(searchTerm))
+                    { if (Extensions.CaseInsensitiveContains(avalue, searchTerm) == true)
+
+  
 
                         {
 
@@ -74,7 +80,8 @@ namespace TechJobsConsole
                 string aValue = job[column];
 
                 if (!values.Contains(aValue))
-                {
+      
+                    {
                     values.Add(aValue);
                 }
             }
@@ -92,8 +99,9 @@ namespace TechJobsConsole
             {
                 string aValue = row[column];
 
-                if (aValue.Contains(value))
-                {
+                //if (aValue.Contains(value))
+                 if (Extensions.CaseInsensitiveContains(aValue, value) == true)
+                    {
                     jobs.Add(row);
                 }
             }
@@ -181,5 +189,8 @@ namespace TechJobsConsole
 
             return rowValues.ToArray();
         }
+
+
+       
     }
 }
